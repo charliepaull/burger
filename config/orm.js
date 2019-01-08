@@ -12,7 +12,7 @@ var connection = require("../config/connection.js");
 // ORM helps create query methods
 // The last variable cb represents the anonymous function being passed from server.js
 
-// The above helper function loops through and creates an array of question marks - ["?", "?", "?"] - and turns it into a string.
+// The below helper function loops through and creates an array of question marks - ["?", "?", "?"] - and turns it into a string.
 // ["?", "?", "?"].toString() => "?,?,?";
 function printQuestionMarks(num) {
   var arr = [];
@@ -33,12 +33,12 @@ function objToSql(ob) {
     var value = ob[key];
     // check to skip hidden properties
     if (Object.hasOwnProperty.call(ob, key)) {
-      // if string with spaces, add quotations (Lana Del Grey => 'Lana Del Grey')
+      // if string with spaces, add quotations (Bacon Cheeseburger => 'Bacon Cheeseburger')
       if (typeof value === "string" && value.indexOf(" ") >= 0) {
         value = "'" + value + "'";
       }
-      // e.g. {name: 'Lana Del Grey'} => ["name='Lana Del Grey'"]
-      // e.g. {sleepy: true} => ["sleepy=true"]
+      // e.g. {name: 'Bacon Cheeseburger'} => ["name='Bacon Cheeseburger'"]
+      // e.g. {consumed: true} => ["consumed=true"]
       arr.push(key + "=" + value);
     }
   }
@@ -49,7 +49,7 @@ function objToSql(ob) {
 
 var orm = {
   // ORM method to select everything from the table
-  selectAll: function(tblInput, cb){
+  all: function(tblInput, cb){
     // set-up of SQL table query - what am I looking for within database?
     var queryString = "SELECT * FROM " + tblInput + ";";
     // query to SQL database
@@ -62,7 +62,7 @@ var orm = {
   },
 
   // ORM method to add burger data into the SQL database
-  insertBurger: function(tblInput, col, val, cb){
+  create: function(tblInput, col, val, cb){
     var queryString = "INSERT INTO" + tblInput;
     queryString = " (" + col.toString() + ") " + "VALUES (" + printQuestionMarks(val.length) + ") ";
 
@@ -84,7 +84,7 @@ var orm = {
   }, 
 
   // ORM method to update SQL database (consume burger, changes "devour" to TRUE(1))
-  consumeBurger: function(tblInput, objColVal, condition, cb){
+  update: function(tblInput, objColVal, condition, cb){
     // SQL syntax to query
     var queryString = "UPDATE" + tblInput;
 
