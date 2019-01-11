@@ -2,9 +2,16 @@
   "name": "burger",
   "version": "1.0.0",
   "description": "Consuming burgers raises one's happiness level.",
-  "main": "index.js",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.0",
+    "mysql": "^2.16.0"
+  },
+  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -16,10 +23,5 @@
   "bugs": {
     "url": "https://github.com/charliepaull/burger/issues"
   },
-  "homepage": "https://github.com/charliepaull/burger#readme",
-  "dependencies": {
-    "express": "^4.16.4",
-    "express-handlebars": "^3.0.0",
-    "mysql": "^2.16.0"
-  }
+  "homepage": "https://github.com/charliepaull/burger#readme"
 }

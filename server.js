@@ -11,8 +11,6 @@ var app = express();
 
 // serve static content from specific directories
 app.use(express.static("public"));  // for burger_style.css 
-app.use(express.static("models")); // for burger.js?
-
 
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));

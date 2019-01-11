@@ -1,0 +1,36 @@
+{{!-- title & headings --}}
+<h1>Eat Da Burger!</h1>
+
+<h2>Consuming Burgers = 😋😋😋</h2>
+<h3>The More You Eat, the Happier You'll Become!</h3>
+
+{{!-- listing unconsumed burgers --}}
+<h3>Choose a Burger to Consume</h3>
+<ul>
+    {{!-- adding info from sql database where consumption = FALSE (0) --}}
+    {{!-- #each is for loop. /each closes for loop --}}
+    {{#each burgers}}
+        {{#unless devoured}}
+        {{/unless}}
+    {{/each}}
+</ul>
+
+{{!-- list of consumed burgers --}}
+<h3>Yum! You've consumed the bugers below 🍔🍔</h3>
+{{!-- burger goes here if devoured === TRUE(1) --}}
+<ul>
+    {{#each burgers}}
+        {{#if devoured}}
+        {{/if}}
+    {{/each}}
+</ul>
+
+{{!-- form submit: add a burger to consume --}}
+<h2>Add a Burger to Consume!</h2>
+<form class="add-burger">
+    <div class="form-group">
+        <label for="burger">Burger:</label>
+        <input type="text" id="burger-info" name="name">
+    </div>    
+    <button type="submit">Add Burger</button>
+</form>
