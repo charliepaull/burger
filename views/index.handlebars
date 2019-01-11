@@ -9,8 +9,10 @@
 <ul>
     {{!-- adding info from sql database where consumption = FALSE (0) --}}
     {{!-- #each is for loop. /each closes for loop --}}
-    {{#each burgers}}
+    {{#each burger}}
         {{#unless devoured}}
+        <li>{{burger_name}}</li>
+        <button type="submit" class="consume-me">Consume Me 🍽</button>
         {{/unless}}
     {{/each}}
 </ul>
@@ -19,8 +21,9 @@
 <h3>Yum! You've consumed the burgers below 🍔🍔</h3>
 {{!-- burger goes here if devoured === TRUE(1) --}}
 <ul>
-    {{#each burgers}}
+    {{#each burger}}
         {{#if devoured}}
+            {{> burger-consume}}
         {{/if}}
     {{/each}}
 </ul>
@@ -34,3 +37,6 @@
     </div>    
     <button type="submit">Add Burger</button>
 </form>
+<script>
+    
+</script>

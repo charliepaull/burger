@@ -22,9 +22,9 @@ router.get("/", function(req, res){
         };
 
         // check if response works
-        console.log(hbsObject);
+        // console.log(data)
         // send hbsObject to index.handlebars
-        res.render("index", hbsObject);
+        res.render("index", { burger: data});
     });
 });
 
