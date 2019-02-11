@@ -11,8 +11,10 @@
     {{!-- #each is for loop. /each closes for loop --}}
     {{#each burger}}
         {{#unless devoured}}
-        <li>{{burger_name}}</li>
-        <button type="submit" class="consume-me">Consume Me 🍽</button>
+        <li>{{burger_name}}
+            <button type="submit" class="consume-me" data-id="{{id}}" data-devoured>Consume Me 🍽</button>
+        </li>
+        
         {{/unless}}
     {{/each}}
 </ul>
@@ -23,7 +25,7 @@
 <ul>
     {{#each burger}}
         {{#if devoured}}
-            {{> burger-consume}}
+            {{> burger-consume devoured = TRUE}}
         {{/if}}
     {{/each}}
 </ul>
@@ -38,5 +40,9 @@
     <button type="submit">Add Burger</button>
 </form>
 <script>
-    
+// GOAL: on click function that allows the user to consume a burger of choice.
+    $(".consume-me").on("click", function(event){
+        // find the burger by ID and change 'devoured' to TRUE (1)
+        var id = $(this).
+    });
 </script>
