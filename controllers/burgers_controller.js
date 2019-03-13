@@ -43,11 +43,11 @@ router.post("/api/burgers", function(req,res) {
 
 // .put route, updating SQL database (devoured isTrue/isFalse)
 router.put("/api/burger/:id", function(req, res){
-    console.log("do you see me?");
+    // console.log("do you see me?");
     // create condition of burger based on query ID
     var condition = "id = " + req.params.id;
 
-    console.log(condition)
+    // console.log(condition) -- this works
     // console log check
     // console.log("condition", condition);
 

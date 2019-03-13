@@ -86,13 +86,13 @@ var orm = {
     queryString += " SET " + objToSql(objColVal) + " WHERE " + condition;
     // how do I get condition above === TRUE when user doesn't input it? Must switch FALSE --> TRUE
   
-    console.log(queryString);
+    // console.log(queryString); -- query works
     // query to SQL database
     connection.query(queryString, function(err, result){
       if (err) console.log(err);
 
       // data object from query
-      console.log(result);
+      // console.log(result); --result works
       cb(result);
       
     });

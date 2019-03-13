@@ -44,7 +44,7 @@
 <script>
 // GOAL: on click function that allows the user to consume a burger of choice.
     $(".consume-me").on("click", function(){
-        console.log("im clicked!") //click works
+        //console.log("im clicked!") //click works
         // find the burger by ID and change 'devoured' to TRUE (1)
         var id = $(this).data("id");
         //console.log(id) //id captured --}}
@@ -57,15 +57,15 @@
 
         $.ajax({
             type: "PUT",
-            url: "/api/burgers/" + id,
+            url: "/api/burger/" + id,
             data: eaten,
             err: function(){
                 throw err;
             }
         }).then(
             function(){
-                console.log() // this doesnt work
-            //location.reload();
+                //console.log("hello there") // this works
+            location.reload();
         })
     });
 
