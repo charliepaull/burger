@@ -17,14 +17,14 @@ var burger = {
     },
 
     // user creates new burger (added to database)
-    newBurger: function(cb){
+    newBurger: function(col, val, cb){
         orm.create("burgers", col, val, function(res){
             cb(res);
         });
     },
 
     // user devourer
-    devourerBurger: function(cb){
+    devourerBurger: function(objColVal, condition, cb){
         orm.update("burgers", objColVal, condition, function(res){
             cb(res);
         });

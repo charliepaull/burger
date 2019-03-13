@@ -53,7 +53,7 @@ var orm = {
     // set-up of SQL table query - what am I looking for within database?
     var queryString = "SELECT * FROM " + tblInput + ";";
     // query to SQL database
-    connection.query(queryString, [tblInput], function(err, result){
+    connection.query(queryString, function(err, result){
       if (err) return err;
 
       // data object from query
@@ -63,20 +63,16 @@ var orm = {
 
   // ORM method to add burger data into the SQL database
   create: function(tblInput, col, val, cb){
-    var queryString = "INSERT INTO" + tblInput;
-    queryString = " (" + col.toString() + ") " + "VALUES (" + printQuestionMarks(val.length) + ") ";
+    var queryString = "INSERT INTO " + tblInput + " (";
+    queryString += col.toString() + ") " + "VALUES (" + printQuestionMarks(val.length) + ") ";
 
-    // check to see what queryString above looks like
-    console.log(queryString, val, function(err, result){
-      if (err) return err;
-
-      // data object from query
-      cb(result);
-    });
+    // console.log(col)
+    // console.log(val)
+    // console.log(queryString);
 
     // query to SQL database
-    connection.query(queryString, function(err, results){
-      if (err) return err;
+    connection.query(queryString, val, function(err, result){
+      if (err)  console.log(err);
 
       // data object from query
       cb(result);
@@ -86,17 +82,19 @@ var orm = {
   // ORM method to update SQL database (consume burger, changes "devour" to TRUE(1))
   update: function(tblInput, objColVal, condition, cb){
     // SQL syntax to query
-    var queryString = "UPDATE" + tblInput;
-
-    queryString = " SET " + objToSql(objColVal) + " WHERE " + condition;
+    var queryString = "UPDATE " + tblInput;
+    queryString += " SET " + objToSql(objColVal) + " WHERE " + condition;
     // how do I get condition above === TRUE when user doesn't input it? Must switch FALSE --> TRUE
-    
+  
+    console.log(queryString);
     // query to SQL database
     connection.query(queryString, function(err, result){
-      if (err) return err;
+      if (err) console.log(err);
 
       // data object from query
+      console.log(result);
       cb(result);
+      
     });
   }
 };

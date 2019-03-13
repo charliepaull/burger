@@ -24,25 +24,32 @@ router.get("/", function(req, res){
         // check if response works
         // console.log(data)
         // send hbsObject to index.handlebars
-        res.render("index", { burger: data});
+        res.render("index", hbsObject);
     });
 });
 
 // .post route, add to SQL database. (not going to client)
-router.post("/api/burgers", function(req, res){
-    burger.newBurger(["burger_name", "devoured"], [req.body.burger_name, req.body.devoured], function(result){
-        // retreive ID of the new burger item
-        // res.json - formatting
-        res.json(({ id: result.insertID}));
+
+router.post("/api/burgers", function(req,res) {
+    // console.log("hello here!");
+    burger.newBurger(["burger_name", "devoured"], 
+    [req.body.burger_name, req.body.devoured], 
+        function(result){
+            // console.log(result);
+            res.json({id: result.insertId});
+            
     });
 });
 
 // .put route, updating SQL database (devoured isTrue/isFalse)
 router.put("/api/burger/:id", function(req, res){
+    console.log("do you see me?");
     // create condition of burger based on query ID
     var condition = "id = " + req.params.id;
+
+    console.log(condition)
     // console log check
-    console.log("condition", condition);
+    // console.log("condition", condition);
 
     // update devour by ID
     burger.devourerBurger(

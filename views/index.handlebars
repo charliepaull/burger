@@ -2,7 +2,7 @@
 <h1>Eat Da Burger!</h1>
 
 <h2>Consuming Burgers = 😋😋😋</h2>
-<h3>The More You Eat, the Happier You'll Become!</h3>
+<h3>The More You Eat, the Happier You'll Be!</h3>
 
 {{!-- listing unconsumed burgers --}}
 <h3>Choose a Burger to Consume</h3>
@@ -25,7 +25,9 @@
 <ul>
     {{#each burger}}
         {{#if devoured}}
-            {{> burger-consume devoured = TRUE}}
+            <p>
+                {{this.id}} {{this.burger_name}}
+            </p>
         {{/if}}
     {{/each}}
 </ul>
@@ -41,8 +43,54 @@
 </form>
 <script>
 // GOAL: on click function that allows the user to consume a burger of choice.
-    $(".consume-me").on("click", function(event){
+    $(".consume-me").on("click", function(){
+        console.log("im clicked!") //click works
         // find the burger by ID and change 'devoured' to TRUE (1)
-        var id = $(this).
+        var id = $(this).data("id");
+        //console.log(id) //id captured --}}
+
+        var eaten = {
+            devoured: 1
+        }
+
+        //console.log(eaten) //captures value of 1 (true)
+
+        $.ajax({
+            type: "PUT",
+            url: "/api/burgers/" + id,
+            data: eaten,
+            err: function(){
+                throw err;
+            }
+        }).then(
+            function(){
+                console.log() // this doesnt work
+            //location.reload();
+        })
     });
+
+
+    // add new burger to DB
+    $(".add-burger").on("submit", function(event){
+        //console.log("hi!");
+
+
+        var newBurger = {
+            burger_name: $("#burger-info").val().trim(),
+            devoured: 0
+        }
+        //console.log(newBurger)
+
+        $.ajax( {
+            type: "POST",
+            url: "/api/burgers",
+            data: newBurger
+        }).then(
+            function(){
+            //console.log("hello") -- this doesnt matter?
+            location.reload();
+        })
+
+        event.preventDefault();
+    })
 </script>
